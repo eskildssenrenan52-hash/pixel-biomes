@@ -181,10 +181,11 @@ export default function Game() {
 
   // Precompute a mini world map for the map modal
   useEffect(() => {
-    if (status !== "playing") return;
+    if (status !== "playing" || modal !== "map") return;
     const s = stateRef.current;
     const cvs = mapCanvasRef.current;
     if (!cvs) return;
+    if (cvs.dataset.rendered === "1") return;
     const scale = 2; // 2px per tile -> 800px map
     cvs.width = WORLD * scale;
     cvs.height = WORLD * scale;
@@ -203,7 +204,8 @@ export default function Game() {
         ctx.fillRect(tx * scale, ty * scale, scale, scale);
       }
     }
-  }, [status]);
+    cvs.dataset.rendered = "1";
+  }, [status, modal]);
 
   // Input
   useEffect(() => {
