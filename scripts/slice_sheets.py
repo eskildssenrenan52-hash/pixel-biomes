@@ -11,11 +11,11 @@ CELL = 64
 INSET = 0.06
 
 
-def slice_sheet(path, cols, rows, chroma_key):
+def slice_sheet(path, cols, rows, chroma_key, inset=INSET):
     img = Image.open(path).convert("RGBA")
     w, h = img.size
     cw, ch = w / cols, h / rows
-    ix, iy = cw * INSET, ch * INSET
+    ix, iy = cw * inset, ch * inset
     cells = []
     for r in range(rows):
         for c in range(cols):
@@ -66,15 +66,15 @@ for i, (name, fname, tier, s) in enumerate(enemy_files, start=1):
 tile_labels = ["ground","ground_var","path","decoration","obstacle","feature"]
 
 biome_groups = [
-    ("tiles_all.png",  ["grassland","desert","snow","swamp","lava","cave","beach","forest","ruins","crystal"]),
-    ("tiles_new1.png", ["tundra","jungle","mushroom","volcano","coral_reef","wasteland","mesa","savanna","taiga","oasis"]),
-    ("tiles_new2.png", ["glacier","badlands","meadow","bamboo","obsidian","sky_islands","void","corrupted","holy","underworld"]),
-    ("tiles_new3.png", ["mangrove","canyon","plains","highlands","marsh","ashland","moonstone","sunken_city","fairy_grove","dragon_peak"]),
+    ("tiles_all.png",  0.06, ["grassland","desert","snow","swamp","lava","cave","beach","forest","ruins","crystal"]),
+    ("tiles_new1.png", 0.14, ["tundra","jungle","mushroom","volcano","coral_reef","wasteland","mesa","savanna","taiga","oasis"]),
+    ("tiles_new2.png", 0.14, ["glacier","badlands","meadow","bamboo","obsidian","sky_islands","void","corrupted","holy","underworld"]),
+    ("tiles_new3.png", 0.14, ["mangrove","canyon","plains","highlands","marsh","ashland","moonstone","sunken_city","fairy_grove","dragon_peak"]),
 ]
 
 tiles_manifest = {}
-for sheet, names in biome_groups:
-    cells = slice_sheet(SHEETS / sheet, 6, 10, False)
+for sheet, inset, names in biome_groups:
+    cells = slice_sheet(SHEETS / sheet, 6, 10, True, inset=inset)
     for row, biome in enumerate(names):
         (OUT / "tiles" / biome).mkdir(parents=True, exist_ok=True)
         tiles_manifest[biome] = []
@@ -90,7 +90,7 @@ for sheet, names in biome_groups:
 
 # ---- Water tiles ----
 water_labels = ["deep","shallow","waves","lily","shore","river","lagoon","frozen"]
-water_cells = slice_sheet(SHEETS / "water.png", 4, 2, False)
+water_cells = slice_sheet(SHEETS / "water.png", 4, 2, True, inset=0.06)
 (OUT / "tiles" / "water").mkdir(parents=True, exist_ok=True)
 water_manifest = []
 for i, label in enumerate(water_labels):
