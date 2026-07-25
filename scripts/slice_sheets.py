@@ -38,53 +38,65 @@ def remove_magenta(img):
     return img
 
 
-enemy_names_a = [
-    "goblin","orc","skeleton","zombie","slime","bat","rat","spider","wolf","boar",
-    "snake","imp","ghost","mummy","kobold","gnoll","lizardman","harpy","minotaur","cyclops",
-    "troll","ogre","demon","gargoyle","wraith","banshee","lich","vampire","werewolf","dragonling",
-    "wyvern","basilisk","chimera","hydra","medusa","centaur","satyr","treant","fairy","gnome",
-    "dwarf","elf_archer","dark_knight","cultist","necromancer","warlock","beholder","mindflayer","fire_elemental","ice_elemental",
+# ---- Enemies: 5 hand-crafted, one image each, scaled to 64x64 ----
+enemy_files = [
+    ("slime",       "enemy_slime.png",       1, dict(hp=25,  atk=3,  df=0, xp=10,  gold=[1,4],   color="#7cff7c")),
+    ("goblin",      "enemy_goblin.png",      2, dict(hp=55,  atk=6,  df=1, xp=25,  gold=[3,10],  color="#89e05a")),
+    ("skeleton",    "enemy_skeleton.png",    3, dict(hp=95,  atk=10, df=2, xp=55,  gold=[8,20],  color="#dcdcdc")),
+    ("necromancer", "enemy_necromancer.png", 4, dict(hp=160, atk=16, df=3, xp=110, gold=[20,45], color="#b48cff")),
+    ("dragon",      "enemy_dragon.png",      5, dict(hp=260, atk=24, df=5, xp=220, gold=[50,120],color="#ff7a3d")),
 ]
-enemy_names_b = [
-    "sand_worm","scorpion","mummy_lord","djinn","sphinx","ice_crystal","yeti","ice_golem","frost_wolf","penguin_warrior",
-    "swamp_hag","bog_monster","giant_frog","mosquito_swarm","will_o_wisp","lava_slime","fire_imp","magma_golem","phoenix","salamander",
-    "cave_crawler","cave_fish","giant_worm","rock_lobster","crystal_spider","tide_crab","giant_turtle","siren","kraken","sea_serpent",
-    "forest_spirit","dryad","mushroom_man","giant_beetle","thorn_vine","stone_guardian","animated_armor","cursed_statue","tomb_scarab","forgotten_king",
-    "crystal_elemental","prism_wisp","geode_golem","shard_dragon","void_wraith","shadow_stalker","plague_doctor","experiment","robot_guardian","ancient_titan",
-]
-
-cells_a = slice_sheet(SHEETS / "enemies_a.png", 10, 5, True)
-cells_b = slice_sheet(SHEETS / "enemies_b.png", 10, 5, True)
-enemies_all = list(zip(cells_a + cells_b, enemy_names_a + enemy_names_b))
 (OUT / "enemies").mkdir(parents=True, exist_ok=True)
 enemy_manifest = []
-for i, (cell, name) in enumerate(enemies_all, start=1):
-    fname = f"{i:03d}_{name}.png"
-    cell.save(OUT / "enemies" / fname)
-    tier = (i - 1) // 20 + 1
+for i, (name, fname, tier, s) in enumerate(enemy_files, start=1):
+    img = Image.open(SHEETS / fname).convert("RGBA")
+    img = remove_magenta(img)
+    img = img.resize((CELL, CELL), Image.LANCZOS)
+    out = f"{i:02d}_{name}.png"
+    img.save(OUT / "enemies" / out)
     enemy_manifest.append({
-        "id": i, "name": name.replace("_", " ").title(),
-        "sprite": f"/game/enemies/{fname}",
-        "hp": 10 + i * 3, "atk": 2 + i // 3, "def": tier,
-        "xp": 5 + i * 2, "gold": [1, 3 + i // 2], "tier": tier,
+        "id": i, "name": name.replace("_"," ").title(),
+        "sprite": f"/game/enemies/{out}",
+        "hp": s["hp"], "atk": s["atk"], "def": s["df"],
+        "xp": s["xp"], "gold": s["gold"], "tier": tier,
+        "color": s["color"],
     })
 
-biomes = ["grassland","desert","snow","swamp","lava","cave","beach","forest","ruins","crystal"]
+# ---- Biomes: 10 original + 30 new = 40 total ----
 tile_labels = ["ground","ground_var","path","decoration","obstacle","feature"]
-cells_tiles = slice_sheet(SHEETS / "tiles_all.png", 6, 10, False)
+
+biome_groups = [
+    ("tiles_all.png",  ["grassland","desert","snow","swamp","lava","cave","beach","forest","ruins","crystal"]),
+    ("tiles_new1.png", ["tundra","jungle","mushroom","volcano","coral_reef","wasteland","mesa","savanna","taiga","oasis"]),
+    ("tiles_new2.png", ["glacier","badlands","meadow","bamboo","obsidian","sky_islands","void","corrupted","holy","underworld"]),
+    ("tiles_new3.png", ["mangrove","canyon","plains","highlands","marsh","ashland","moonstone","sunken_city","fairy_grove","dragon_peak"]),
+]
+
 tiles_manifest = {}
-for row, biome in enumerate(biomes):
-    (OUT / "tiles" / biome).mkdir(parents=True, exist_ok=True)
-    tiles_manifest[biome] = []
-    for col, label in enumerate(tile_labels):
-        cell = cells_tiles[row * 6 + col]
-        fname = f"{col}_{label}.png"
-        cell.save(OUT / "tiles" / biome / fname)
-        tiles_manifest[biome].append({
-            "index": col, "label": label,
-            "sprite": f"/game/tiles/{biome}/{fname}",
-            "walkable": col in (0, 1, 2),
-        })
+for sheet, names in biome_groups:
+    cells = slice_sheet(SHEETS / sheet, 6, 10, False)
+    for row, biome in enumerate(names):
+        (OUT / "tiles" / biome).mkdir(parents=True, exist_ok=True)
+        tiles_manifest[biome] = []
+        for col, label in enumerate(tile_labels):
+            cell = cells[row * 6 + col]
+            f = f"{col}_{label}.png"
+            cell.save(OUT / "tiles" / biome / f)
+            tiles_manifest[biome].append({
+                "index": col, "label": label,
+                "sprite": f"/game/tiles/{biome}/{f}",
+                "walkable": col in (0, 1, 2),
+            })
+
+# ---- Water tiles ----
+water_labels = ["deep","shallow","waves","lily","shore","river","lagoon","frozen"]
+water_cells = slice_sheet(SHEETS / "water.png", 4, 2, False)
+(OUT / "tiles" / "water").mkdir(parents=True, exist_ok=True)
+water_manifest = []
+for i, label in enumerate(water_labels):
+    f = f"{i}_{label}.png"
+    water_cells[i].save(OUT / "tiles" / "water" / f)
+    water_manifest.append({"index": i, "label": label, "sprite": f"/game/tiles/water/{f}"})
 
 item_names = [
     "wooden_sword","iron_sword","steel_sword","magic_sword","battle_axe","war_hammer","bow","staff",
