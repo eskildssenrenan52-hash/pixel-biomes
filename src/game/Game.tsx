@@ -401,7 +401,14 @@ export default function Game() {
       }
       const biome = biomeAt(tx, ty);
       const idx = tileIndexAt(tx, ty);
-      const img = s.tileImgs[biome]?.[idx];
+      const set = s.tileImgs[biome];
+      if (!set) return;
+      // For decoration/obstacle/feature (transparent sprites), paint ground beneath first
+      if (idx >= 3) {
+        const base = set[0];
+        if (base) ctx.drawImage(base, sx, sy, TILE, TILE);
+      }
+      const img = set[idx];
       if (img) ctx.drawImage(img, sx, sy, TILE, TILE);
     };
 
