@@ -141,7 +141,8 @@ for row, d in enumerate(["down","left","right","up"]):
 
 manifest = {
     "cell": CELL, "enemies": enemy_manifest, "biomes": tiles_manifest,
+    "water": water_manifest,
     "items": items_manifest, "ui": ui_manifest, "coins": coins_manifest, "player": player_manifest,
 }
 (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2))
-print(f"OK: {len(enemy_manifest)} enemies, {sum(len(v) for v in tiles_manifest.values())} tiles, {len(items_manifest)} items, {len(ui_names)} ui, player 16 frames")
+print(f"OK: {len(enemy_manifest)} enemies, {len(tiles_manifest)} biomes, {sum(len(v) for v in tiles_manifest.values())} biome tiles, {len(water_manifest)} water, {len(items_manifest)} items, {len(ui_names)} ui, player 16 frames")
