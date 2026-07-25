@@ -3,1403 +3,78 @@
   "enemies": [
     {
       "id": 1,
-      "name": "Goblin",
-      "sprite": "/game/enemies/001_goblin.png",
-      "hp": 13,
-      "atk": 2,
-      "def": 1,
-      "xp": 7,
-      "gold": [
-        1,
-        3
-      ],
-      "tier": 1
-    },
-    {
-      "id": 2,
-      "name": "Orc",
-      "sprite": "/game/enemies/002_orc.png",
-      "hp": 16,
-      "atk": 2,
-      "def": 1,
-      "xp": 9,
+      "name": "Slime",
+      "sprite": "/game/enemies/01_slime.png",
+      "hp": 25,
+      "atk": 3,
+      "def": 0,
+      "xp": 10,
       "gold": [
         1,
         4
       ],
-      "tier": 1
+      "tier": 1,
+      "color": "#7cff7c"
+    },
+    {
+      "id": 2,
+      "name": "Goblin",
+      "sprite": "/game/enemies/02_goblin.png",
+      "hp": 55,
+      "atk": 6,
+      "def": 1,
+      "xp": 25,
+      "gold": [
+        3,
+        10
+      ],
+      "tier": 2,
+      "color": "#89e05a"
     },
     {
       "id": 3,
       "name": "Skeleton",
-      "sprite": "/game/enemies/003_skeleton.png",
-      "hp": 19,
-      "atk": 3,
-      "def": 1,
-      "xp": 11,
-      "gold": [
-        1,
-        4
-      ],
-      "tier": 1
-    },
-    {
-      "id": 4,
-      "name": "Zombie",
-      "sprite": "/game/enemies/004_zombie.png",
-      "hp": 22,
-      "atk": 3,
-      "def": 1,
-      "xp": 13,
-      "gold": [
-        1,
-        5
-      ],
-      "tier": 1
-    },
-    {
-      "id": 5,
-      "name": "Slime",
-      "sprite": "/game/enemies/005_slime.png",
-      "hp": 25,
-      "atk": 3,
-      "def": 1,
-      "xp": 15,
-      "gold": [
-        1,
-        5
-      ],
-      "tier": 1
-    },
-    {
-      "id": 6,
-      "name": "Bat",
-      "sprite": "/game/enemies/006_bat.png",
-      "hp": 28,
-      "atk": 4,
-      "def": 1,
-      "xp": 17,
-      "gold": [
-        1,
-        6
-      ],
-      "tier": 1
-    },
-    {
-      "id": 7,
-      "name": "Rat",
-      "sprite": "/game/enemies/007_rat.png",
-      "hp": 31,
-      "atk": 4,
-      "def": 1,
-      "xp": 19,
-      "gold": [
-        1,
-        6
-      ],
-      "tier": 1
-    },
-    {
-      "id": 8,
-      "name": "Spider",
-      "sprite": "/game/enemies/008_spider.png",
-      "hp": 34,
-      "atk": 4,
-      "def": 1,
-      "xp": 21,
-      "gold": [
-        1,
-        7
-      ],
-      "tier": 1
-    },
-    {
-      "id": 9,
-      "name": "Wolf",
-      "sprite": "/game/enemies/009_wolf.png",
-      "hp": 37,
-      "atk": 5,
-      "def": 1,
-      "xp": 23,
-      "gold": [
-        1,
-        7
-      ],
-      "tier": 1
-    },
-    {
-      "id": 10,
-      "name": "Boar",
-      "sprite": "/game/enemies/010_boar.png",
-      "hp": 40,
-      "atk": 5,
-      "def": 1,
-      "xp": 25,
-      "gold": [
-        1,
-        8
-      ],
-      "tier": 1
-    },
-    {
-      "id": 11,
-      "name": "Snake",
-      "sprite": "/game/enemies/011_snake.png",
-      "hp": 43,
-      "atk": 5,
-      "def": 1,
-      "xp": 27,
-      "gold": [
-        1,
-        8
-      ],
-      "tier": 1
-    },
-    {
-      "id": 12,
-      "name": "Imp",
-      "sprite": "/game/enemies/012_imp.png",
-      "hp": 46,
-      "atk": 6,
-      "def": 1,
-      "xp": 29,
-      "gold": [
-        1,
-        9
-      ],
-      "tier": 1
-    },
-    {
-      "id": 13,
-      "name": "Ghost",
-      "sprite": "/game/enemies/013_ghost.png",
-      "hp": 49,
-      "atk": 6,
-      "def": 1,
-      "xp": 31,
-      "gold": [
-        1,
-        9
-      ],
-      "tier": 1
-    },
-    {
-      "id": 14,
-      "name": "Mummy",
-      "sprite": "/game/enemies/014_mummy.png",
-      "hp": 52,
-      "atk": 6,
-      "def": 1,
-      "xp": 33,
-      "gold": [
-        1,
-        10
-      ],
-      "tier": 1
-    },
-    {
-      "id": 15,
-      "name": "Kobold",
-      "sprite": "/game/enemies/015_kobold.png",
-      "hp": 55,
-      "atk": 7,
-      "def": 1,
-      "xp": 35,
-      "gold": [
-        1,
-        10
-      ],
-      "tier": 1
-    },
-    {
-      "id": 16,
-      "name": "Gnoll",
-      "sprite": "/game/enemies/016_gnoll.png",
-      "hp": 58,
-      "atk": 7,
-      "def": 1,
-      "xp": 37,
-      "gold": [
-        1,
-        11
-      ],
-      "tier": 1
-    },
-    {
-      "id": 17,
-      "name": "Lizardman",
-      "sprite": "/game/enemies/017_lizardman.png",
-      "hp": 61,
-      "atk": 7,
-      "def": 1,
-      "xp": 39,
-      "gold": [
-        1,
-        11
-      ],
-      "tier": 1
-    },
-    {
-      "id": 18,
-      "name": "Harpy",
-      "sprite": "/game/enemies/018_harpy.png",
-      "hp": 64,
-      "atk": 8,
-      "def": 1,
-      "xp": 41,
-      "gold": [
-        1,
-        12
-      ],
-      "tier": 1
-    },
-    {
-      "id": 19,
-      "name": "Minotaur",
-      "sprite": "/game/enemies/019_minotaur.png",
-      "hp": 67,
-      "atk": 8,
-      "def": 1,
-      "xp": 43,
-      "gold": [
-        1,
-        12
-      ],
-      "tier": 1
-    },
-    {
-      "id": 20,
-      "name": "Cyclops",
-      "sprite": "/game/enemies/020_cyclops.png",
-      "hp": 70,
-      "atk": 8,
-      "def": 1,
-      "xp": 45,
-      "gold": [
-        1,
-        13
-      ],
-      "tier": 1
-    },
-    {
-      "id": 21,
-      "name": "Troll",
-      "sprite": "/game/enemies/021_troll.png",
-      "hp": 73,
-      "atk": 9,
-      "def": 2,
-      "xp": 47,
-      "gold": [
-        1,
-        13
-      ],
-      "tier": 2
-    },
-    {
-      "id": 22,
-      "name": "Ogre",
-      "sprite": "/game/enemies/022_ogre.png",
-      "hp": 76,
-      "atk": 9,
-      "def": 2,
-      "xp": 49,
-      "gold": [
-        1,
-        14
-      ],
-      "tier": 2
-    },
-    {
-      "id": 23,
-      "name": "Demon",
-      "sprite": "/game/enemies/023_demon.png",
-      "hp": 79,
-      "atk": 9,
-      "def": 2,
-      "xp": 51,
-      "gold": [
-        1,
-        14
-      ],
-      "tier": 2
-    },
-    {
-      "id": 24,
-      "name": "Gargoyle",
-      "sprite": "/game/enemies/024_gargoyle.png",
-      "hp": 82,
-      "atk": 10,
-      "def": 2,
-      "xp": 53,
-      "gold": [
-        1,
-        15
-      ],
-      "tier": 2
-    },
-    {
-      "id": 25,
-      "name": "Wraith",
-      "sprite": "/game/enemies/025_wraith.png",
-      "hp": 85,
+      "sprite": "/game/enemies/03_skeleton.png",
+      "hp": 95,
       "atk": 10,
       "def": 2,
       "xp": 55,
       "gold": [
-        1,
-        15
-      ],
-      "tier": 2
-    },
-    {
-      "id": 26,
-      "name": "Banshee",
-      "sprite": "/game/enemies/026_banshee.png",
-      "hp": 88,
-      "atk": 10,
-      "def": 2,
-      "xp": 57,
-      "gold": [
-        1,
-        16
-      ],
-      "tier": 2
-    },
-    {
-      "id": 27,
-      "name": "Lich",
-      "sprite": "/game/enemies/027_lich.png",
-      "hp": 91,
-      "atk": 11,
-      "def": 2,
-      "xp": 59,
-      "gold": [
-        1,
-        16
-      ],
-      "tier": 2
-    },
-    {
-      "id": 28,
-      "name": "Vampire",
-      "sprite": "/game/enemies/028_vampire.png",
-      "hp": 94,
-      "atk": 11,
-      "def": 2,
-      "xp": 61,
-      "gold": [
-        1,
-        17
-      ],
-      "tier": 2
-    },
-    {
-      "id": 29,
-      "name": "Werewolf",
-      "sprite": "/game/enemies/029_werewolf.png",
-      "hp": 97,
-      "atk": 11,
-      "def": 2,
-      "xp": 63,
-      "gold": [
-        1,
-        17
-      ],
-      "tier": 2
-    },
-    {
-      "id": 30,
-      "name": "Dragonling",
-      "sprite": "/game/enemies/030_dragonling.png",
-      "hp": 100,
-      "atk": 12,
-      "def": 2,
-      "xp": 65,
-      "gold": [
-        1,
-        18
-      ],
-      "tier": 2
-    },
-    {
-      "id": 31,
-      "name": "Wyvern",
-      "sprite": "/game/enemies/031_wyvern.png",
-      "hp": 103,
-      "atk": 12,
-      "def": 2,
-      "xp": 67,
-      "gold": [
-        1,
-        18
-      ],
-      "tier": 2
-    },
-    {
-      "id": 32,
-      "name": "Basilisk",
-      "sprite": "/game/enemies/032_basilisk.png",
-      "hp": 106,
-      "atk": 12,
-      "def": 2,
-      "xp": 69,
-      "gold": [
-        1,
-        19
-      ],
-      "tier": 2
-    },
-    {
-      "id": 33,
-      "name": "Chimera",
-      "sprite": "/game/enemies/033_chimera.png",
-      "hp": 109,
-      "atk": 13,
-      "def": 2,
-      "xp": 71,
-      "gold": [
-        1,
-        19
-      ],
-      "tier": 2
-    },
-    {
-      "id": 34,
-      "name": "Hydra",
-      "sprite": "/game/enemies/034_hydra.png",
-      "hp": 112,
-      "atk": 13,
-      "def": 2,
-      "xp": 73,
-      "gold": [
-        1,
+        8,
         20
       ],
-      "tier": 2
+      "tier": 3,
+      "color": "#dcdcdc"
     },
     {
-      "id": 35,
-      "name": "Medusa",
-      "sprite": "/game/enemies/035_medusa.png",
-      "hp": 115,
-      "atk": 13,
-      "def": 2,
-      "xp": 75,
-      "gold": [
-        1,
-        20
-      ],
-      "tier": 2
-    },
-    {
-      "id": 36,
-      "name": "Centaur",
-      "sprite": "/game/enemies/036_centaur.png",
-      "hp": 118,
-      "atk": 14,
-      "def": 2,
-      "xp": 77,
-      "gold": [
-        1,
-        21
-      ],
-      "tier": 2
-    },
-    {
-      "id": 37,
-      "name": "Satyr",
-      "sprite": "/game/enemies/037_satyr.png",
-      "hp": 121,
-      "atk": 14,
-      "def": 2,
-      "xp": 79,
-      "gold": [
-        1,
-        21
-      ],
-      "tier": 2
-    },
-    {
-      "id": 38,
-      "name": "Treant",
-      "sprite": "/game/enemies/038_treant.png",
-      "hp": 124,
-      "atk": 14,
-      "def": 2,
-      "xp": 81,
-      "gold": [
-        1,
-        22
-      ],
-      "tier": 2
-    },
-    {
-      "id": 39,
-      "name": "Fairy",
-      "sprite": "/game/enemies/039_fairy.png",
-      "hp": 127,
-      "atk": 15,
-      "def": 2,
-      "xp": 83,
-      "gold": [
-        1,
-        22
-      ],
-      "tier": 2
-    },
-    {
-      "id": 40,
-      "name": "Gnome",
-      "sprite": "/game/enemies/040_gnome.png",
-      "hp": 130,
-      "atk": 15,
-      "def": 2,
-      "xp": 85,
-      "gold": [
-        1,
-        23
-      ],
-      "tier": 2
-    },
-    {
-      "id": 41,
-      "name": "Dwarf",
-      "sprite": "/game/enemies/041_dwarf.png",
-      "hp": 133,
-      "atk": 15,
-      "def": 3,
-      "xp": 87,
-      "gold": [
-        1,
-        23
-      ],
-      "tier": 3
-    },
-    {
-      "id": 42,
-      "name": "Elf Archer",
-      "sprite": "/game/enemies/042_elf_archer.png",
-      "hp": 136,
-      "atk": 16,
-      "def": 3,
-      "xp": 89,
-      "gold": [
-        1,
-        24
-      ],
-      "tier": 3
-    },
-    {
-      "id": 43,
-      "name": "Dark Knight",
-      "sprite": "/game/enemies/043_dark_knight.png",
-      "hp": 139,
-      "atk": 16,
-      "def": 3,
-      "xp": 91,
-      "gold": [
-        1,
-        24
-      ],
-      "tier": 3
-    },
-    {
-      "id": 44,
-      "name": "Cultist",
-      "sprite": "/game/enemies/044_cultist.png",
-      "hp": 142,
-      "atk": 16,
-      "def": 3,
-      "xp": 93,
-      "gold": [
-        1,
-        25
-      ],
-      "tier": 3
-    },
-    {
-      "id": 45,
+      "id": 4,
       "name": "Necromancer",
-      "sprite": "/game/enemies/045_necromancer.png",
-      "hp": 145,
-      "atk": 17,
-      "def": 3,
-      "xp": 95,
-      "gold": [
-        1,
-        25
-      ],
-      "tier": 3
-    },
-    {
-      "id": 46,
-      "name": "Warlock",
-      "sprite": "/game/enemies/046_warlock.png",
-      "hp": 148,
-      "atk": 17,
-      "def": 3,
-      "xp": 97,
-      "gold": [
-        1,
-        26
-      ],
-      "tier": 3
-    },
-    {
-      "id": 47,
-      "name": "Beholder",
-      "sprite": "/game/enemies/047_beholder.png",
-      "hp": 151,
-      "atk": 17,
-      "def": 3,
-      "xp": 99,
-      "gold": [
-        1,
-        26
-      ],
-      "tier": 3
-    },
-    {
-      "id": 48,
-      "name": "Mindflayer",
-      "sprite": "/game/enemies/048_mindflayer.png",
-      "hp": 154,
-      "atk": 18,
-      "def": 3,
-      "xp": 101,
-      "gold": [
-        1,
-        27
-      ],
-      "tier": 3
-    },
-    {
-      "id": 49,
-      "name": "Fire Elemental",
-      "sprite": "/game/enemies/049_fire_elemental.png",
-      "hp": 157,
-      "atk": 18,
-      "def": 3,
-      "xp": 103,
-      "gold": [
-        1,
-        27
-      ],
-      "tier": 3
-    },
-    {
-      "id": 50,
-      "name": "Ice Elemental",
-      "sprite": "/game/enemies/050_ice_elemental.png",
+      "sprite": "/game/enemies/04_necromancer.png",
       "hp": 160,
-      "atk": 18,
+      "atk": 16,
       "def": 3,
-      "xp": 105,
+      "xp": 110,
       "gold": [
-        1,
-        28
-      ],
-      "tier": 3
-    },
-    {
-      "id": 51,
-      "name": "Sand Worm",
-      "sprite": "/game/enemies/051_sand_worm.png",
-      "hp": 163,
-      "atk": 19,
-      "def": 3,
-      "xp": 107,
-      "gold": [
-        1,
-        28
-      ],
-      "tier": 3
-    },
-    {
-      "id": 52,
-      "name": "Scorpion",
-      "sprite": "/game/enemies/052_scorpion.png",
-      "hp": 166,
-      "atk": 19,
-      "def": 3,
-      "xp": 109,
-      "gold": [
-        1,
-        29
-      ],
-      "tier": 3
-    },
-    {
-      "id": 53,
-      "name": "Mummy Lord",
-      "sprite": "/game/enemies/053_mummy_lord.png",
-      "hp": 169,
-      "atk": 19,
-      "def": 3,
-      "xp": 111,
-      "gold": [
-        1,
-        29
-      ],
-      "tier": 3
-    },
-    {
-      "id": 54,
-      "name": "Djinn",
-      "sprite": "/game/enemies/054_djinn.png",
-      "hp": 172,
-      "atk": 20,
-      "def": 3,
-      "xp": 113,
-      "gold": [
-        1,
-        30
-      ],
-      "tier": 3
-    },
-    {
-      "id": 55,
-      "name": "Sphinx",
-      "sprite": "/game/enemies/055_sphinx.png",
-      "hp": 175,
-      "atk": 20,
-      "def": 3,
-      "xp": 115,
-      "gold": [
-        1,
-        30
-      ],
-      "tier": 3
-    },
-    {
-      "id": 56,
-      "name": "Ice Crystal",
-      "sprite": "/game/enemies/056_ice_crystal.png",
-      "hp": 178,
-      "atk": 20,
-      "def": 3,
-      "xp": 117,
-      "gold": [
-        1,
-        31
-      ],
-      "tier": 3
-    },
-    {
-      "id": 57,
-      "name": "Yeti",
-      "sprite": "/game/enemies/057_yeti.png",
-      "hp": 181,
-      "atk": 21,
-      "def": 3,
-      "xp": 119,
-      "gold": [
-        1,
-        31
-      ],
-      "tier": 3
-    },
-    {
-      "id": 58,
-      "name": "Ice Golem",
-      "sprite": "/game/enemies/058_ice_golem.png",
-      "hp": 184,
-      "atk": 21,
-      "def": 3,
-      "xp": 121,
-      "gold": [
-        1,
-        32
-      ],
-      "tier": 3
-    },
-    {
-      "id": 59,
-      "name": "Frost Wolf",
-      "sprite": "/game/enemies/059_frost_wolf.png",
-      "hp": 187,
-      "atk": 21,
-      "def": 3,
-      "xp": 123,
-      "gold": [
-        1,
-        32
-      ],
-      "tier": 3
-    },
-    {
-      "id": 60,
-      "name": "Penguin Warrior",
-      "sprite": "/game/enemies/060_penguin_warrior.png",
-      "hp": 190,
-      "atk": 22,
-      "def": 3,
-      "xp": 125,
-      "gold": [
-        1,
-        33
-      ],
-      "tier": 3
-    },
-    {
-      "id": 61,
-      "name": "Swamp Hag",
-      "sprite": "/game/enemies/061_swamp_hag.png",
-      "hp": 193,
-      "atk": 22,
-      "def": 4,
-      "xp": 127,
-      "gold": [
-        1,
-        33
-      ],
-      "tier": 4
-    },
-    {
-      "id": 62,
-      "name": "Bog Monster",
-      "sprite": "/game/enemies/062_bog_monster.png",
-      "hp": 196,
-      "atk": 22,
-      "def": 4,
-      "xp": 129,
-      "gold": [
-        1,
-        34
-      ],
-      "tier": 4
-    },
-    {
-      "id": 63,
-      "name": "Giant Frog",
-      "sprite": "/game/enemies/063_giant_frog.png",
-      "hp": 199,
-      "atk": 23,
-      "def": 4,
-      "xp": 131,
-      "gold": [
-        1,
-        34
-      ],
-      "tier": 4
-    },
-    {
-      "id": 64,
-      "name": "Mosquito Swarm",
-      "sprite": "/game/enemies/064_mosquito_swarm.png",
-      "hp": 202,
-      "atk": 23,
-      "def": 4,
-      "xp": 133,
-      "gold": [
-        1,
-        35
-      ],
-      "tier": 4
-    },
-    {
-      "id": 65,
-      "name": "Will O Wisp",
-      "sprite": "/game/enemies/065_will_o_wisp.png",
-      "hp": 205,
-      "atk": 23,
-      "def": 4,
-      "xp": 135,
-      "gold": [
-        1,
-        35
-      ],
-      "tier": 4
-    },
-    {
-      "id": 66,
-      "name": "Lava Slime",
-      "sprite": "/game/enemies/066_lava_slime.png",
-      "hp": 208,
-      "atk": 24,
-      "def": 4,
-      "xp": 137,
-      "gold": [
-        1,
-        36
-      ],
-      "tier": 4
-    },
-    {
-      "id": 67,
-      "name": "Fire Imp",
-      "sprite": "/game/enemies/067_fire_imp.png",
-      "hp": 211,
-      "atk": 24,
-      "def": 4,
-      "xp": 139,
-      "gold": [
-        1,
-        36
-      ],
-      "tier": 4
-    },
-    {
-      "id": 68,
-      "name": "Magma Golem",
-      "sprite": "/game/enemies/068_magma_golem.png",
-      "hp": 214,
-      "atk": 24,
-      "def": 4,
-      "xp": 141,
-      "gold": [
-        1,
-        37
-      ],
-      "tier": 4
-    },
-    {
-      "id": 69,
-      "name": "Phoenix",
-      "sprite": "/game/enemies/069_phoenix.png",
-      "hp": 217,
-      "atk": 25,
-      "def": 4,
-      "xp": 143,
-      "gold": [
-        1,
-        37
-      ],
-      "tier": 4
-    },
-    {
-      "id": 70,
-      "name": "Salamander",
-      "sprite": "/game/enemies/070_salamander.png",
-      "hp": 220,
-      "atk": 25,
-      "def": 4,
-      "xp": 145,
-      "gold": [
-        1,
-        38
-      ],
-      "tier": 4
-    },
-    {
-      "id": 71,
-      "name": "Cave Crawler",
-      "sprite": "/game/enemies/071_cave_crawler.png",
-      "hp": 223,
-      "atk": 25,
-      "def": 4,
-      "xp": 147,
-      "gold": [
-        1,
-        38
-      ],
-      "tier": 4
-    },
-    {
-      "id": 72,
-      "name": "Cave Fish",
-      "sprite": "/game/enemies/072_cave_fish.png",
-      "hp": 226,
-      "atk": 26,
-      "def": 4,
-      "xp": 149,
-      "gold": [
-        1,
-        39
-      ],
-      "tier": 4
-    },
-    {
-      "id": 73,
-      "name": "Giant Worm",
-      "sprite": "/game/enemies/073_giant_worm.png",
-      "hp": 229,
-      "atk": 26,
-      "def": 4,
-      "xp": 151,
-      "gold": [
-        1,
-        39
-      ],
-      "tier": 4
-    },
-    {
-      "id": 74,
-      "name": "Rock Lobster",
-      "sprite": "/game/enemies/074_rock_lobster.png",
-      "hp": 232,
-      "atk": 26,
-      "def": 4,
-      "xp": 153,
-      "gold": [
-        1,
-        40
-      ],
-      "tier": 4
-    },
-    {
-      "id": 75,
-      "name": "Crystal Spider",
-      "sprite": "/game/enemies/075_crystal_spider.png",
-      "hp": 235,
-      "atk": 27,
-      "def": 4,
-      "xp": 155,
-      "gold": [
-        1,
-        40
-      ],
-      "tier": 4
-    },
-    {
-      "id": 76,
-      "name": "Tide Crab",
-      "sprite": "/game/enemies/076_tide_crab.png",
-      "hp": 238,
-      "atk": 27,
-      "def": 4,
-      "xp": 157,
-      "gold": [
-        1,
-        41
-      ],
-      "tier": 4
-    },
-    {
-      "id": 77,
-      "name": "Giant Turtle",
-      "sprite": "/game/enemies/077_giant_turtle.png",
-      "hp": 241,
-      "atk": 27,
-      "def": 4,
-      "xp": 159,
-      "gold": [
-        1,
-        41
-      ],
-      "tier": 4
-    },
-    {
-      "id": 78,
-      "name": "Siren",
-      "sprite": "/game/enemies/078_siren.png",
-      "hp": 244,
-      "atk": 28,
-      "def": 4,
-      "xp": 161,
-      "gold": [
-        1,
-        42
-      ],
-      "tier": 4
-    },
-    {
-      "id": 79,
-      "name": "Kraken",
-      "sprite": "/game/enemies/079_kraken.png",
-      "hp": 247,
-      "atk": 28,
-      "def": 4,
-      "xp": 163,
-      "gold": [
-        1,
-        42
-      ],
-      "tier": 4
-    },
-    {
-      "id": 80,
-      "name": "Sea Serpent",
-      "sprite": "/game/enemies/080_sea_serpent.png",
-      "hp": 250,
-      "atk": 28,
-      "def": 4,
-      "xp": 165,
-      "gold": [
-        1,
-        43
-      ],
-      "tier": 4
-    },
-    {
-      "id": 81,
-      "name": "Forest Spirit",
-      "sprite": "/game/enemies/081_forest_spirit.png",
-      "hp": 253,
-      "atk": 29,
-      "def": 5,
-      "xp": 167,
-      "gold": [
-        1,
-        43
-      ],
-      "tier": 5
-    },
-    {
-      "id": 82,
-      "name": "Dryad",
-      "sprite": "/game/enemies/082_dryad.png",
-      "hp": 256,
-      "atk": 29,
-      "def": 5,
-      "xp": 169,
-      "gold": [
-        1,
-        44
-      ],
-      "tier": 5
-    },
-    {
-      "id": 83,
-      "name": "Mushroom Man",
-      "sprite": "/game/enemies/083_mushroom_man.png",
-      "hp": 259,
-      "atk": 29,
-      "def": 5,
-      "xp": 171,
-      "gold": [
-        1,
-        44
-      ],
-      "tier": 5
-    },
-    {
-      "id": 84,
-      "name": "Giant Beetle",
-      "sprite": "/game/enemies/084_giant_beetle.png",
-      "hp": 262,
-      "atk": 30,
-      "def": 5,
-      "xp": 173,
-      "gold": [
-        1,
+        20,
         45
       ],
-      "tier": 5
+      "tier": 4,
+      "color": "#b48cff"
     },
     {
-      "id": 85,
-      "name": "Thorn Vine",
-      "sprite": "/game/enemies/085_thorn_vine.png",
-      "hp": 265,
-      "atk": 30,
+      "id": 5,
+      "name": "Dragon",
+      "sprite": "/game/enemies/05_dragon.png",
+      "hp": 260,
+      "atk": 24,
       "def": 5,
-      "xp": 175,
+      "xp": 220,
       "gold": [
-        1,
-        45
+        50,
+        120
       ],
-      "tier": 5
-    },
-    {
-      "id": 86,
-      "name": "Stone Guardian",
-      "sprite": "/game/enemies/086_stone_guardian.png",
-      "hp": 268,
-      "atk": 30,
-      "def": 5,
-      "xp": 177,
-      "gold": [
-        1,
-        46
-      ],
-      "tier": 5
-    },
-    {
-      "id": 87,
-      "name": "Animated Armor",
-      "sprite": "/game/enemies/087_animated_armor.png",
-      "hp": 271,
-      "atk": 31,
-      "def": 5,
-      "xp": 179,
-      "gold": [
-        1,
-        46
-      ],
-      "tier": 5
-    },
-    {
-      "id": 88,
-      "name": "Cursed Statue",
-      "sprite": "/game/enemies/088_cursed_statue.png",
-      "hp": 274,
-      "atk": 31,
-      "def": 5,
-      "xp": 181,
-      "gold": [
-        1,
-        47
-      ],
-      "tier": 5
-    },
-    {
-      "id": 89,
-      "name": "Tomb Scarab",
-      "sprite": "/game/enemies/089_tomb_scarab.png",
-      "hp": 277,
-      "atk": 31,
-      "def": 5,
-      "xp": 183,
-      "gold": [
-        1,
-        47
-      ],
-      "tier": 5
-    },
-    {
-      "id": 90,
-      "name": "Forgotten King",
-      "sprite": "/game/enemies/090_forgotten_king.png",
-      "hp": 280,
-      "atk": 32,
-      "def": 5,
-      "xp": 185,
-      "gold": [
-        1,
-        48
-      ],
-      "tier": 5
-    },
-    {
-      "id": 91,
-      "name": "Crystal Elemental",
-      "sprite": "/game/enemies/091_crystal_elemental.png",
-      "hp": 283,
-      "atk": 32,
-      "def": 5,
-      "xp": 187,
-      "gold": [
-        1,
-        48
-      ],
-      "tier": 5
-    },
-    {
-      "id": 92,
-      "name": "Prism Wisp",
-      "sprite": "/game/enemies/092_prism_wisp.png",
-      "hp": 286,
-      "atk": 32,
-      "def": 5,
-      "xp": 189,
-      "gold": [
-        1,
-        49
-      ],
-      "tier": 5
-    },
-    {
-      "id": 93,
-      "name": "Geode Golem",
-      "sprite": "/game/enemies/093_geode_golem.png",
-      "hp": 289,
-      "atk": 33,
-      "def": 5,
-      "xp": 191,
-      "gold": [
-        1,
-        49
-      ],
-      "tier": 5
-    },
-    {
-      "id": 94,
-      "name": "Shard Dragon",
-      "sprite": "/game/enemies/094_shard_dragon.png",
-      "hp": 292,
-      "atk": 33,
-      "def": 5,
-      "xp": 193,
-      "gold": [
-        1,
-        50
-      ],
-      "tier": 5
-    },
-    {
-      "id": 95,
-      "name": "Void Wraith",
-      "sprite": "/game/enemies/095_void_wraith.png",
-      "hp": 295,
-      "atk": 33,
-      "def": 5,
-      "xp": 195,
-      "gold": [
-        1,
-        50
-      ],
-      "tier": 5
-    },
-    {
-      "id": 96,
-      "name": "Shadow Stalker",
-      "sprite": "/game/enemies/096_shadow_stalker.png",
-      "hp": 298,
-      "atk": 34,
-      "def": 5,
-      "xp": 197,
-      "gold": [
-        1,
-        51
-      ],
-      "tier": 5
-    },
-    {
-      "id": 97,
-      "name": "Plague Doctor",
-      "sprite": "/game/enemies/097_plague_doctor.png",
-      "hp": 301,
-      "atk": 34,
-      "def": 5,
-      "xp": 199,
-      "gold": [
-        1,
-        51
-      ],
-      "tier": 5
-    },
-    {
-      "id": 98,
-      "name": "Experiment",
-      "sprite": "/game/enemies/098_experiment.png",
-      "hp": 304,
-      "atk": 34,
-      "def": 5,
-      "xp": 201,
-      "gold": [
-        1,
-        52
-      ],
-      "tier": 5
-    },
-    {
-      "id": 99,
-      "name": "Robot Guardian",
-      "sprite": "/game/enemies/099_robot_guardian.png",
-      "hp": 307,
-      "atk": 35,
-      "def": 5,
-      "xp": 203,
-      "gold": [
-        1,
-        52
-      ],
-      "tier": 5
-    },
-    {
-      "id": 100,
-      "name": "Ancient Titan",
-      "sprite": "/game/enemies/100_ancient_titan.png",
-      "hp": 310,
-      "atk": 35,
-      "def": 5,
-      "xp": 205,
-      "gold": [
-        1,
-        53
-      ],
-      "tier": 5
+      "tier": 5,
+      "color": "#ff7a3d"
     }
   ],
   "biomes": {
@@ -1782,8 +457,1190 @@
         "sprite": "/game/tiles/crystal/5_feature.png",
         "walkable": false
       }
+    ],
+    "tundra": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/tundra/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/tundra/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/tundra/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/tundra/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/tundra/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/tundra/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "jungle": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/jungle/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/jungle/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/jungle/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/jungle/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/jungle/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/jungle/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "mushroom": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/mushroom/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/mushroom/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/mushroom/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/mushroom/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/mushroom/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/mushroom/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "volcano": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/volcano/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/volcano/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/volcano/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/volcano/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/volcano/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/volcano/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "coral_reef": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/coral_reef/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/coral_reef/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/coral_reef/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/coral_reef/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/coral_reef/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/coral_reef/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "wasteland": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/wasteland/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/wasteland/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/wasteland/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/wasteland/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/wasteland/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/wasteland/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "mesa": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/mesa/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/mesa/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/mesa/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/mesa/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/mesa/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/mesa/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "savanna": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/savanna/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/savanna/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/savanna/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/savanna/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/savanna/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/savanna/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "taiga": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/taiga/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/taiga/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/taiga/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/taiga/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/taiga/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/taiga/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "oasis": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/oasis/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/oasis/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/oasis/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/oasis/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/oasis/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/oasis/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "glacier": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/glacier/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/glacier/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/glacier/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/glacier/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/glacier/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/glacier/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "badlands": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/badlands/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/badlands/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/badlands/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/badlands/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/badlands/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/badlands/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "meadow": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/meadow/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/meadow/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/meadow/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/meadow/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/meadow/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/meadow/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "bamboo": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/bamboo/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/bamboo/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/bamboo/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/bamboo/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/bamboo/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/bamboo/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "obsidian": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/obsidian/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/obsidian/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/obsidian/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/obsidian/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/obsidian/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/obsidian/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "sky_islands": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/sky_islands/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/sky_islands/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/sky_islands/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/sky_islands/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/sky_islands/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/sky_islands/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "void": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/void/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/void/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/void/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/void/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/void/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/void/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "corrupted": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/corrupted/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/corrupted/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/corrupted/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/corrupted/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/corrupted/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/corrupted/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "holy": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/holy/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/holy/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/holy/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/holy/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/holy/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/holy/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "underworld": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/underworld/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/underworld/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/underworld/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/underworld/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/underworld/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/underworld/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "mangrove": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/mangrove/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/mangrove/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/mangrove/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/mangrove/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/mangrove/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/mangrove/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "canyon": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/canyon/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/canyon/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/canyon/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/canyon/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/canyon/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/canyon/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "plains": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/plains/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/plains/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/plains/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/plains/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/plains/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/plains/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "highlands": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/highlands/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/highlands/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/highlands/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/highlands/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/highlands/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/highlands/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "marsh": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/marsh/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/marsh/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/marsh/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/marsh/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/marsh/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/marsh/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "ashland": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/ashland/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/ashland/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/ashland/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/ashland/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/ashland/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/ashland/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "moonstone": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/moonstone/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/moonstone/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/moonstone/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/moonstone/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/moonstone/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/moonstone/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "sunken_city": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/sunken_city/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/sunken_city/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/sunken_city/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/sunken_city/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/sunken_city/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/sunken_city/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "fairy_grove": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/fairy_grove/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/fairy_grove/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/fairy_grove/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/fairy_grove/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/fairy_grove/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/fairy_grove/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "dragon_peak": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/dragon_peak/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/dragon_peak/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/dragon_peak/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/dragon_peak/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/dragon_peak/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/dragon_peak/5_feature.png",
+        "walkable": false
+      }
     ]
   },
+  "water": [
+    {
+      "index": 0,
+      "label": "deep",
+      "sprite": "/game/tiles/water/0_deep.png"
+    },
+    {
+      "index": 1,
+      "label": "shallow",
+      "sprite": "/game/tiles/water/1_shallow.png"
+    },
+    {
+      "index": 2,
+      "label": "waves",
+      "sprite": "/game/tiles/water/2_waves.png"
+    },
+    {
+      "index": 3,
+      "label": "lily",
+      "sprite": "/game/tiles/water/3_lily.png"
+    },
+    {
+      "index": 4,
+      "label": "shore",
+      "sprite": "/game/tiles/water/4_shore.png"
+    },
+    {
+      "index": 5,
+      "label": "river",
+      "sprite": "/game/tiles/water/5_river.png"
+    },
+    {
+      "index": 6,
+      "label": "lagoon",
+      "sprite": "/game/tiles/water/6_lagoon.png"
+    },
+    {
+      "index": 7,
+      "label": "frozen",
+      "sprite": "/game/tiles/water/7_frozen.png"
+    }
+  ],
   "items": [
     {
       "id": 0,
