@@ -1,24 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const Game = lazy(() => import("../game/Game"));
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Pixel Realms — 2D pixel MMO adventure" },
+      { name: "description", content: "Explore 10 pixel-art biomes, battle 100 unique monsters, and loot treasure in this AI-crafted 2D adventure." },
+      { property: "og:title", content: "Pixel Realms — 2D pixel MMO adventure" },
+      { property: "og:description", content: "Explore 10 pixel-art biomes, battle 100 unique monsters, and loot treasure." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-black text-white">Loading…</div>}>
+      <Game />
+    </Suspense>
   );
 }
