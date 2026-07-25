@@ -1,13 +1,16 @@
 export type EnemyDef = {
   id: number; name: string; sprite: string;
   hp: number; atk: number; def: number; xp: number; gold: [number, number]; tier: number;
+  color?: string;
 };
 export type TileDef = { index: number; label: string; sprite: string; walkable: boolean };
 export type ItemDef = { id: number; name: string; sprite: string };
+export type WaterDef = { index: number; label: string; sprite: string };
 export type Manifest = {
   cell: number;
   enemies: EnemyDef[];
   biomes: Record<string, TileDef[]>;
+  water: WaterDef[];
   items: ItemDef[];
   ui: Record<string, string>;
   coins: Record<string, string>;
