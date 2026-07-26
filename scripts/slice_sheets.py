@@ -45,6 +45,16 @@ enemy_files = [
     ("skeleton",    "enemy_skeleton.png",    3, dict(hp=95,  atk=10, df=2, xp=55,  gold=[8,20],  color="#dcdcdc")),
     ("necromancer", "enemy_necromancer.png", 4, dict(hp=160, atk=16, df=3, xp=110, gold=[20,45], color="#b48cff")),
     ("dragon",      "enemy_dragon.png",      5, dict(hp=260, atk=24, df=5, xp=220, gold=[50,120],color="#ff7a3d")),
+    ("bat",         "enemy_bat.png",         1, dict(hp=20,  atk=4,  df=0, xp=12,  gold=[1,5],   color="#4a1e5e")),
+    ("wolf",        "enemy_wolf.png",        2, dict(hp=60,  atk=7,  df=1, xp=28,  gold=[4,12],  color="#8899aa")),
+    ("orc",         "enemy_orc.png",         2, dict(hp=75,  atk=8,  df=2, xp=35,  gold=[5,14],  color="#3fa63f")),
+    ("mummy",       "enemy_mummy.png",       3, dict(hp=110, atk=11, df=3, xp=65,  gold=[10,24], color="#c9c39a")),
+    ("ghost",       "enemy_ghost.png",       3, dict(hp=85,  atk=13, df=1, xp=70,  gold=[10,25], color="#e8f4ff")),
+    ("minotaur",    "enemy_minotaur.png",    4, dict(hp=180, atk=18, df=3, xp=125, gold=[24,50], color="#7a4a2a")),
+    ("witch",       "enemy_witch.png",       4, dict(hp=140, atk=20, df=2, xp=130, gold=[28,55], color="#5b2c8a")),
+    ("golem",       "enemy_golem.png",       4, dict(hp=220, atk=15, df=8, xp=140, gold=[26,55], color="#8a8a8a")),
+    ("demon",       "enemy_demon.png",       5, dict(hp=280, atk=26, df=5, xp=240, gold=[55,130],color="#b21a1a")),
+    ("hydra",       "enemy_hydra.png",       5, dict(hp=320, atk=22, df=6, xp=260, gold=[60,140],color="#3ec96b")),
 ]
 (OUT / "enemies").mkdir(parents=True, exist_ok=True)
 enemy_manifest = []
@@ -70,6 +80,8 @@ biome_groups = [
     ("tiles_new1.png", 0.14, ["tundra","jungle","mushroom","volcano","coral_reef","wasteland","mesa","savanna","taiga","oasis"]),
     ("tiles_new2.png", 0.14, ["glacier","badlands","meadow","bamboo","obsidian","sky_islands","void","corrupted","holy","underworld"]),
     ("tiles_new3.png", 0.14, ["mangrove","canyon","plains","highlands","marsh","ashland","moonstone","sunken_city","fairy_grove","dragon_peak"]),
+    ("tiles_new4.png", 0.14, ["shadow_forest","prismatic","thunderland","gemcave","honey_meadow","ice_spire","ember_plains","bone_wastes","spirit_grove","deep_dark"]),
+    ("tiles_new5.png", 0.14, ["fungal_deeps","tropic","silk_forest","quartz_flats","magma_reef","iron_hills","storm_peaks","verdant","dusk_desert","celestial"]),
 ]
 
 tiles_manifest = {}
