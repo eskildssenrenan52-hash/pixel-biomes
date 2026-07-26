@@ -5,14 +5,28 @@ const TILE = 64;
 const VIEW_TILES_X = 11;
 const VIEW_TILES_Y = 15;
 const WORLD = 400;                 // 5x bigger than before (was 80)
-const BIOME_SEED_COUNT = 80;       // number of Voronoi biome regions
+const BIOME_SEED_COUNT = 120;      // number of Voronoi biome regions
+const MAX_ENEMIES = 400;           // total living enemies on the map
+const INITIAL_ENEMIES = 260;       // pre-populated across the world
 
 type Dir = "down" | "left" | "right" | "up";
-type Enemy = { def: EnemyDef; x: number; y: number; hp: number; img: HTMLImageElement };
+type Enemy = { def: EnemyDef; x: number; y: number; hp: number; maxHp: number; level: number; atk: number; df: number; img: HTMLImageElement };
 type Drop = { x: number; y: number; kind: "coin" | "item"; img: HTMLImageElement; value: number; name: string };
 type FloatText = { x: number; y: number; text: string; color: string; life: number };
 type Quest = { biome: string; goal: number; progress: number; rewardGold: number; rewardXp: number; rewardItem?: string; done: boolean };
-type InvItem = { name: string; sprite: string; count: number };
+type EquipKind = "weapon" | "armor" | "shield" | "helmet" | "none";
+type InvItem = { name: string; sprite: string; count: number; kind: EquipKind; atk: number; df: number };
+type Equipped = { weapon?: InvItem; armor?: InvItem; shield?: InvItem; helmet?: InvItem };
+
+function classify(name: string): { kind: EquipKind; atk: number; df: number } {
+  const n = name.toLowerCase();
+  if (n.includes("sword") || n.includes("axe") || n.includes("hammer") || n.includes("bow") || n.includes("staff"))
+    return { kind: "weapon", atk: n.includes("magic") ? 12 : n.includes("steel") ? 9 : n.includes("iron") ? 6 : n.includes("wooden") ? 3 : 7, df: 0 };
+  if (n.includes("shield")) return { kind: "shield", atk: 0, df: n.includes("magic") ? 6 : n.includes("iron") ? 4 : 2 };
+  if (n.includes("helmet") || n.includes("cap")) return { kind: "helmet", atk: 0, df: n.includes("iron") ? 3 : 1 };
+  if (n.includes("chest") || n.includes("robe")) return { kind: "armor", atk: 0, df: n.includes("magic") ? 5 : n.includes("iron") ? 6 : 3 };
+  return { kind: "none", atk: 0, df: 0 };
+}
 
 // deterministic hashing
 function hash2(x: number, y: number, s = 0) {
