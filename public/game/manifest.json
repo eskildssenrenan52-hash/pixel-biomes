@@ -75,6 +75,156 @@
       ],
       "tier": 5,
       "color": "#ff7a3d"
+    },
+    {
+      "id": 6,
+      "name": "Bat",
+      "sprite": "/game/enemies/06_bat.png",
+      "hp": 20,
+      "atk": 4,
+      "def": 0,
+      "xp": 12,
+      "gold": [
+        1,
+        5
+      ],
+      "tier": 1,
+      "color": "#4a1e5e"
+    },
+    {
+      "id": 7,
+      "name": "Wolf",
+      "sprite": "/game/enemies/07_wolf.png",
+      "hp": 60,
+      "atk": 7,
+      "def": 1,
+      "xp": 28,
+      "gold": [
+        4,
+        12
+      ],
+      "tier": 2,
+      "color": "#8899aa"
+    },
+    {
+      "id": 8,
+      "name": "Orc",
+      "sprite": "/game/enemies/08_orc.png",
+      "hp": 75,
+      "atk": 8,
+      "def": 2,
+      "xp": 35,
+      "gold": [
+        5,
+        14
+      ],
+      "tier": 2,
+      "color": "#3fa63f"
+    },
+    {
+      "id": 9,
+      "name": "Mummy",
+      "sprite": "/game/enemies/09_mummy.png",
+      "hp": 110,
+      "atk": 11,
+      "def": 3,
+      "xp": 65,
+      "gold": [
+        10,
+        24
+      ],
+      "tier": 3,
+      "color": "#c9c39a"
+    },
+    {
+      "id": 10,
+      "name": "Ghost",
+      "sprite": "/game/enemies/10_ghost.png",
+      "hp": 85,
+      "atk": 13,
+      "def": 1,
+      "xp": 70,
+      "gold": [
+        10,
+        25
+      ],
+      "tier": 3,
+      "color": "#e8f4ff"
+    },
+    {
+      "id": 11,
+      "name": "Minotaur",
+      "sprite": "/game/enemies/11_minotaur.png",
+      "hp": 180,
+      "atk": 18,
+      "def": 3,
+      "xp": 125,
+      "gold": [
+        24,
+        50
+      ],
+      "tier": 4,
+      "color": "#7a4a2a"
+    },
+    {
+      "id": 12,
+      "name": "Witch",
+      "sprite": "/game/enemies/12_witch.png",
+      "hp": 140,
+      "atk": 20,
+      "def": 2,
+      "xp": 130,
+      "gold": [
+        28,
+        55
+      ],
+      "tier": 4,
+      "color": "#5b2c8a"
+    },
+    {
+      "id": 13,
+      "name": "Golem",
+      "sprite": "/game/enemies/13_golem.png",
+      "hp": 220,
+      "atk": 15,
+      "def": 8,
+      "xp": 140,
+      "gold": [
+        26,
+        55
+      ],
+      "tier": 4,
+      "color": "#8a8a8a"
+    },
+    {
+      "id": 14,
+      "name": "Demon",
+      "sprite": "/game/enemies/14_demon.png",
+      "hp": 280,
+      "atk": 26,
+      "def": 5,
+      "xp": 240,
+      "gold": [
+        55,
+        130
+      ],
+      "tier": 5,
+      "color": "#b21a1a"
+    },
+    {
+      "id": 15,
+      "name": "Hydra",
+      "sprite": "/game/enemies/15_hydra.png",
+      "hp": 320,
+      "atk": 22,
+      "def": 6,
+      "xp": 260,
+      "gold": [
+        60,
+        140
+      ],
+      "tier": 5,
+      "color": "#3ec96b"
     }
   ],
   "biomes": {
@@ -1595,6 +1745,766 @@
         "index": 5,
         "label": "feature",
         "sprite": "/game/tiles/dragon_peak/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "shadow_forest": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/shadow_forest/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/shadow_forest/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/shadow_forest/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/shadow_forest/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/shadow_forest/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/shadow_forest/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "prismatic": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/prismatic/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/prismatic/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/prismatic/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/prismatic/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/prismatic/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/prismatic/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "thunderland": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/thunderland/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/thunderland/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/thunderland/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/thunderland/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/thunderland/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/thunderland/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "gemcave": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/gemcave/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/gemcave/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/gemcave/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/gemcave/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/gemcave/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/gemcave/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "honey_meadow": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/honey_meadow/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/honey_meadow/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/honey_meadow/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/honey_meadow/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/honey_meadow/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/honey_meadow/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "ice_spire": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/ice_spire/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/ice_spire/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/ice_spire/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/ice_spire/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/ice_spire/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/ice_spire/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "ember_plains": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/ember_plains/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/ember_plains/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/ember_plains/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/ember_plains/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/ember_plains/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/ember_plains/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "bone_wastes": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/bone_wastes/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/bone_wastes/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/bone_wastes/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/bone_wastes/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/bone_wastes/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/bone_wastes/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "spirit_grove": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/spirit_grove/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/spirit_grove/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/spirit_grove/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/spirit_grove/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/spirit_grove/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/spirit_grove/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "deep_dark": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/deep_dark/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/deep_dark/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/deep_dark/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/deep_dark/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/deep_dark/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/deep_dark/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "fungal_deeps": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/fungal_deeps/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/fungal_deeps/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/fungal_deeps/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/fungal_deeps/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/fungal_deeps/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/fungal_deeps/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "tropic": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/tropic/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/tropic/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/tropic/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/tropic/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/tropic/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/tropic/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "silk_forest": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/silk_forest/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/silk_forest/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/silk_forest/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/silk_forest/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/silk_forest/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/silk_forest/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "quartz_flats": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/quartz_flats/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/quartz_flats/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/quartz_flats/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/quartz_flats/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/quartz_flats/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/quartz_flats/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "magma_reef": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/magma_reef/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/magma_reef/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/magma_reef/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/magma_reef/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/magma_reef/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/magma_reef/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "iron_hills": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/iron_hills/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/iron_hills/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/iron_hills/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/iron_hills/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/iron_hills/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/iron_hills/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "storm_peaks": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/storm_peaks/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/storm_peaks/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/storm_peaks/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/storm_peaks/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/storm_peaks/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/storm_peaks/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "verdant": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/verdant/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/verdant/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/verdant/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/verdant/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/verdant/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/verdant/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "dusk_desert": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/dusk_desert/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/dusk_desert/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/dusk_desert/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/dusk_desert/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/dusk_desert/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/dusk_desert/5_feature.png",
+        "walkable": false
+      }
+    ],
+    "celestial": [
+      {
+        "index": 0,
+        "label": "ground",
+        "sprite": "/game/tiles/celestial/0_ground.png",
+        "walkable": true
+      },
+      {
+        "index": 1,
+        "label": "ground_var",
+        "sprite": "/game/tiles/celestial/1_ground_var.png",
+        "walkable": true
+      },
+      {
+        "index": 2,
+        "label": "path",
+        "sprite": "/game/tiles/celestial/2_path.png",
+        "walkable": true
+      },
+      {
+        "index": 3,
+        "label": "decoration",
+        "sprite": "/game/tiles/celestial/3_decoration.png",
+        "walkable": false
+      },
+      {
+        "index": 4,
+        "label": "obstacle",
+        "sprite": "/game/tiles/celestial/4_obstacle.png",
+        "walkable": false
+      },
+      {
+        "index": 5,
+        "label": "feature",
+        "sprite": "/game/tiles/celestial/5_feature.png",
         "walkable": false
       }
     ]
