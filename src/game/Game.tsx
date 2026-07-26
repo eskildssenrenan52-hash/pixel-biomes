@@ -381,8 +381,9 @@ export default function Game() {
       target.hp -= dmg;
       s.floats.push({ x: target.x, y: target.y, text: `-${dmg}`, color: "#ffdd44", life: 40 });
       if (target.hp <= 0) {
-        s.gold += Math.floor(target.def.gold[0] + Math.random() * (target.def.gold[1] - target.def.gold[0] + 1));
-        s.xp += target.def.xp;
+        const lvlMul = 1 + (target.level - 1) * 0.3;
+        s.gold += Math.floor((target.def.gold[0] + Math.random() * (target.def.gold[1] - target.def.gold[0] + 1)) * lvlMul);
+        s.xp += Math.round(target.def.xp * lvlMul);
         if (Math.random() < 0.75) {
           const kinds: (keyof Manifest["coins"])[] = ["copper","silver","gold","gem"];
           const k = kinds[Math.min(3, Math.floor(target.def.tier / 2))];
@@ -405,9 +406,11 @@ export default function Game() {
 
     const enemyTurn = () => {
       for (const e of s.enemies) {
+        if (Math.abs(e.x - s.px) + Math.abs(e.y - s.py) > 14) continue;
         const dx = Math.sign(s.px - e.x), dy = Math.sign(s.py - e.y);
         if (Math.abs(s.px - e.x) + Math.abs(s.py - e.y) === 1) {
-          const dmg = Math.max(1, e.def.atk - s.level);
+          const armorDf = (s.equipped.armor?.df ?? 0) + (s.equipped.shield?.df ?? 0) + (s.equipped.helmet?.df ?? 0);
+          const dmg = Math.max(1, e.atk - s.level - armorDf);
           s.hp -= dmg;
           s.floats.push({ x: s.px, y: s.py, text: `-${dmg}`, color: "#ff5555", life: 40 });
         } else {
@@ -464,7 +467,7 @@ export default function Game() {
       if (acted) enemyTurn();
 
       s.lastSpawn += dt;
-      if (s.lastSpawn > 1.2) { s.lastSpawn = 0; spawnEnemy(); }
+      if (s.lastSpawn > 0.35) { s.lastSpawn = 0; spawnEnemy(); }
       s.floats.forEach(f => { f.life -= 1; f.y -= 0.02; });
       s.floats = s.floats.filter(f => f.life > 0);
       if (s.hp <= 0) setStatus("dead");
