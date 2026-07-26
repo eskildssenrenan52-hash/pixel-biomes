@@ -286,8 +286,23 @@ export default function Game() {
     return () => { window.removeEventListener("keydown", kd); window.removeEventListener("keyup", ku); };
   }, []);
 
-  const refreshInvView = () => setInvView(Array.from(stateRef.current.inv.values()));
+  const refreshInvView = () => {
+    setInvView(Array.from(stateRef.current.inv.values()));
+    setEquipView({ ...stateRef.current.equipped });
+  };
   const refreshQuestView = () => setQuestView(Object.values(stateRef.current.quests));
+
+  const equip = (name: string) => {
+    const s = stateRef.current;
+    const it = s.inv.get(name);
+    if (!it || it.kind === "none") return;
+    s.equipped[it.kind] = it;
+    refreshInvView();
+  };
+  const unequip = (kind: Exclude<EquipKind, "none">) => {
+    delete stateRef.current.equipped[kind];
+    refreshInvView();
+  };
 
   // Main loop
   useEffect(() => {
@@ -330,23 +345,29 @@ export default function Game() {
     const addInv = (name: string, sprite: string) => {
       const cur = s.inv.get(name);
       if (cur) cur.count += 1;
-      else s.inv.set(name, { name, sprite, count: 1 });
+      else {
+        const c = classify(name);
+        s.inv.set(name, { name, sprite, count: 1, kind: c.kind, atk: c.atk, df: c.df });
+      }
     };
 
     const spawnEnemy = () => {
       if (!s.manifest) return;
-      if (s.enemies.length >= 10) return;
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 6 + Math.random() * 4;
-      const tx = Math.round(s.px + Math.cos(angle) * dist);
-      const ty = Math.round(s.py + Math.sin(angle) * dist);
-      if (!isWalkable(tx, ty)) return;
-      // Tier scales with level
-      const tier = Math.min(5, 1 + Math.floor(s.level / 3));
-      const pool = s.manifest.enemies.filter(e => e.tier <= tier);
-      const def = pool[Math.floor(Math.random() * pool.length)];
-      const img = s.images.get(def.sprite)!;
-      s.enemies.push({ def, x: tx, y: ty, hp: def.hp, img });
+      if (s.enemies.length >= MAX_ENEMIES) return;
+      for (let tries = 0; tries < 12; tries++) {
+        const tx = Math.floor(Math.random() * WORLD);
+        const ty = Math.floor(Math.random() * WORLD);
+        if (!isWalkable(tx, ty)) continue;
+        if (Math.abs(tx - s.px) + Math.abs(ty - s.py) < 5) continue;
+        const cx = WORLD / 2, cy = WORLD / 2;
+        const dist = Math.sqrt((tx - cx) ** 2 + (ty - cy) ** 2) / (WORLD / 2);
+        const tier = Math.min(5, 1 + Math.floor(dist * 5 + Math.random() * 1.5));
+        const pool = s.manifest.enemies.filter(e => e.tier === tier);
+        const def = pool[Math.floor(Math.random() * pool.length)] || s.manifest.enemies[0];
+        const level = Math.max(1, Math.round(1 + dist * 15 + Math.random() * 3));
+        s.enemies.push(makeEnemy(def, tx, ty, level, s.images.get(def.sprite)!));
+        return;
+      }
     };
 
     const doAttack = () => {
@@ -355,7 +376,8 @@ export default function Game() {
       const tx = s.px + dx, ty = s.py + dy;
       const target = s.enemies.find(e => e.x === tx && e.y === ty);
       if (!target) return;
-      const dmg = Math.max(1, 6 + s.level * 2 - target.def.def);
+      const weaponBonus = s.equipped.weapon?.atk ?? 0;
+      const dmg = Math.max(1, 6 + s.level * 2 + weaponBonus - target.df);
       target.hp -= dmg;
       s.floats.push({ x: target.x, y: target.y, text: `-${dmg}`, color: "#ffdd44", life: 40 });
       if (target.hp <= 0) {
