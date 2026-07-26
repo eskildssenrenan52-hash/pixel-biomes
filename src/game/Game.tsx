@@ -156,6 +156,7 @@ export default function Game() {
           }
         }
       }
+      populateWorldEnemies();
       setStatus("playing");
     })().catch(err => console.error(err));
   }, []);
@@ -260,7 +261,8 @@ export default function Game() {
     // sample coarser: every tile
     for (let ty = 0; ty < WORLD; ty++) {
       for (let tx = 0; tx < WORLD; tx++) {
-        if (isWater(tx, ty)) ctx.fillStyle = "#1e40af";
+        if (!inWorldShape(tx, ty)) ctx.fillStyle = "#050510";
+        else if (isWater(tx, ty)) ctx.fillStyle = "#1e40af";
         else ctx.fillStyle = colorFor(biomeAt(tx, ty));
         ctx.fillRect(tx * scale, ty * scale, scale, scale);
       }
@@ -480,6 +482,9 @@ export default function Game() {
       if (tx < 0 || ty < 0 || tx >= WORLD || ty >= WORLD) {
         ctx.fillStyle = "#000"; ctx.fillRect(sx, sy, TILE, TILE); return;
       }
+      if (!inWorldShape(tx, ty)) {
+        ctx.fillStyle = "#050510"; ctx.fillRect(sx, sy, TILE, TILE); return;
+      }
       if (isWater(tx, ty)) {
         const wIdx = Math.floor(hash2(tx, ty, 91) * s.waterImgs.length);
         const img = s.waterImgs[wIdx];
@@ -521,13 +526,20 @@ export default function Game() {
         ctx.drawImage(d.img, sx + 8, sy + 8, TILE - 16, TILE - 16);
       }
       for (const e of s.enemies) {
+        if (Math.abs(e.x - s.px) > VIEW_TILES_X + 1 || Math.abs(e.y - s.py) > VIEW_TILES_Y + 1) continue;
         const sx = cx + (e.x - s.px) * TILE - TILE / 2;
         const sy = cy + (e.y - s.py) * TILE - TILE / 2;
         ctx.drawImage(e.img, sx, sy, TILE, TILE);
-        const pct = Math.max(0, e.hp / e.def.hp);
+        const pct = Math.max(0, e.hp / e.maxHp);
         ctx.fillStyle = "#000"; ctx.fillRect(sx + 6, sy - 6, TILE - 12, 4);
         ctx.fillStyle = pct > 0.5 ? "#4ade80" : pct > 0.25 ? "#facc15" : "#ef4444";
         ctx.fillRect(sx + 6, sy - 6, (TILE - 12) * pct, 4);
+        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        ctx.fillRect(sx + 2, sy - 20, 36, 12);
+        ctx.font = "bold 10px system-ui";
+        ctx.textAlign = "left";
+        ctx.fillStyle = "#fde68a";
+        ctx.fillText(`Lv${e.level}`, sx + 4, sy - 11);
       }
       const pImg = s.playerImgs[s.dir][Math.floor(s.frame)];
       if (pImg) ctx.drawImage(pImg, cx - TILE / 2, cy - TILE / 2, TILE, TILE);
