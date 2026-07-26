@@ -71,6 +71,7 @@ export default function Game() {
   const [hud, setHud] = useState({ hp: 100, maxHp: 100, gold: 0, xp: 0, xpNext: 50, level: 1 });
   const [modal, setModal] = useState<null | "inv" | "map" | "quests">(null);
   const [invView, setInvView] = useState<InvItem[]>([]);
+  const [equipView, setEquipView] = useState<Equipped>({});
   const [questView, setQuestView] = useState<Quest[]>([]);
   const [currentBiome, setCurrentBiome] = useState("grassland");
 
@@ -91,6 +92,7 @@ export default function Game() {
     attackReq: boolean;
     hp: number; maxHp: number; gold: number; xp: number; level: number;
     inv: Map<string, InvItem>;
+    equipped: Equipped;
     quests: Record<string, Quest>;
     lastSpawn: number;
   }>({
@@ -103,7 +105,7 @@ export default function Game() {
     enemies: [], drops: [], floats: [],
     keys: new Set(), touchDir: null, attackReq: false,
     hp: 100, maxHp: 100, gold: 0, xp: 0, level: 1,
-    inv: new Map(), quests: {}, lastSpawn: 0,
+    inv: new Map(), equipped: {}, quests: {}, lastSpawn: 0,
   });
 
   // Load assets
