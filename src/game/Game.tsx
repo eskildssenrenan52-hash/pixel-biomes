@@ -582,8 +582,10 @@ export default function Game() {
     }
     s.hp = 100; s.maxHp = 100; s.gold = 0; s.xp = 0; s.level = 1;
     s.inv.clear();
+    s.equipped = {};
     for (const q of Object.values(s.quests)) { q.progress = 0; q.done = false; }
     s.enemies = []; s.drops = []; s.floats = [];
+    populateWorldEnemies();
     setStatus("playing");
   };
 
@@ -700,21 +702,54 @@ export default function Game() {
 
           {modal === "inv" && (
             <Modal title={`Inventory — ${hud.gold} gold`} onClose={() => setModal(null)}>
-              <div className="grid grid-cols-6 gap-2 max-h-[70vh] overflow-auto">
+              <div className="mb-3 grid grid-cols-4 gap-2">
+                {(["weapon","armor","shield","helmet"] as const).map(slot => {
+                  const it = equipView[slot];
+                  return (
+                    <button
+                      key={slot}
+                      onClick={() => it && unequip(slot)}
+                      className="relative aspect-square rounded bg-yellow-500/10 border border-yellow-400/40 flex items-center justify-center"
+                      title={it ? `Unequip ${it.name}` : `${slot} slot`}
+                    >
+                      {it ? (
+                        <img src={it.sprite} alt={it.name} className="w-10 h-10" style={{ imageRendering: "pixelated" }} />
+                      ) : (
+                        <span className="text-[10px] uppercase text-white/50">{slot}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mb-2 text-[11px] text-white/70">
+                ATK bonus +{equipView.weapon?.atk ?? 0} · DEF bonus +{(equipView.armor?.df ?? 0) + (equipView.shield?.df ?? 0) + (equipView.helmet?.df ?? 0)}
+              </div>
+              <div className="grid grid-cols-6 gap-2 max-h-[50vh] overflow-auto">
                 {invView.length === 0 && (
                   <div className="col-span-6 text-center text-white/60 text-sm py-8">
                     Empty. Defeat enemies to collect loot.
                   </div>
                 )}
                 {invView.map(it => (
-                  <div key={it.name} className="relative aspect-square rounded bg-white/10 border border-white/10 flex items-center justify-center">
+                  <button
+                    key={it.name}
+                    onClick={() => equip(it.name)}
+                    disabled={it.kind === "none"}
+                    title={it.kind !== "none" ? `Equip ${it.name} (${it.kind})` : it.name}
+                    className={`relative aspect-square rounded border flex items-center justify-center ${it.kind !== "none" ? "bg-emerald-500/10 border-emerald-400/40 hover:bg-emerald-500/20" : "bg-white/10 border-white/10"}`}
+                  >
                     <img src={it.sprite} alt={it.name} className="w-10 h-10" style={{ imageRendering: "pixelated" }} />
                     {it.count > 1 && (
                       <span className="absolute bottom-0 right-0 text-[10px] font-bold bg-black/80 px-1 rounded">
                         ×{it.count}
                       </span>
                     )}
-                  </div>
+                    {it.kind !== "none" && (
+                      <span className="absolute top-0 left-0 text-[9px] font-bold bg-emerald-600/80 px-1 rounded-br">
+                        {it.kind === "weapon" ? `+${it.atk}A` : `+${it.df}D`}
+                      </span>
+                    )}
+                  </button>
                 ))}
               </div>
             </Modal>
