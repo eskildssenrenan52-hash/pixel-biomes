@@ -191,8 +191,53 @@ export default function Game() {
   }
   function isWalkable(tx: number, ty: number): boolean {
     if (tx < 0 || ty < 0 || tx >= WORLD || ty >= WORLD) return false;
+    if (!inWorldShape(tx, ty)) return false;
     if (isWater(tx, ty)) return false;
     return tileIndexAt(tx, ty) <= 2;
+  }
+
+  // Non-rectangular continent: distance-from-center attenuated by noise
+  function inWorldShape(tx: number, ty: number): boolean {
+    const cx = WORLD / 2, cy = WORLD / 2;
+    const dx = (tx - cx) / (WORLD / 2);
+    const dy = (ty - cy) / (WORLD / 2);
+    const r = Math.sqrt(dx * dx + dy * dy);
+    const wobble = noise2(tx, ty, 22, 17) * 0.4;
+    return r < 0.72 + wobble;
+  }
+
+  function makeEnemy(def: EnemyDef, tx: number, ty: number, level: number, img: HTMLImageElement): Enemy {
+    const mul = 1 + (level - 1) * 0.35;
+    const maxHp = Math.round(def.hp * mul);
+    return {
+      def, x: tx, y: ty, level,
+      maxHp, hp: maxHp,
+      atk: Math.round(def.atk * mul),
+      df: Math.round(def.def * (1 + (level - 1) * 0.2)),
+      img,
+    };
+  }
+
+  function populateWorldEnemies() {
+    const s = stateRef.current;
+    if (!s.manifest) return;
+    let placed = 0, tries = 0;
+    while (placed < INITIAL_ENEMIES && tries < INITIAL_ENEMIES * 20) {
+      tries++;
+      const tx = Math.floor(Math.random() * WORLD);
+      const ty = Math.floor(Math.random() * WORLD);
+      if (!isWalkable(tx, ty)) continue;
+      if (Math.abs(tx - s.px) + Math.abs(ty - s.py) < 4) continue;
+      const cx = WORLD / 2, cy = WORLD / 2;
+      const dist = Math.sqrt((tx - cx) ** 2 + (ty - cy) ** 2) / (WORLD / 2);
+      const tier = Math.min(5, 1 + Math.floor(dist * 5 + Math.random() * 1.5));
+      const pool = s.manifest.enemies.filter(e => e.tier === tier);
+      const def = pool[Math.floor(Math.random() * pool.length)] || s.manifest.enemies[0];
+      const level = Math.max(1, Math.round(1 + dist * 15 + Math.random() * 3));
+      const img = s.images.get(def.sprite)!;
+      s.enemies.push(makeEnemy(def, tx, ty, level, img));
+      placed++;
+    }
   }
 
   // Precompute a mini world map for the map modal
