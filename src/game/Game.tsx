@@ -5,14 +5,28 @@ const TILE = 64;
 const VIEW_TILES_X = 11;
 const VIEW_TILES_Y = 15;
 const WORLD = 400;                 // 5x bigger than before (was 80)
-const BIOME_SEED_COUNT = 80;       // number of Voronoi biome regions
+const BIOME_SEED_COUNT = 120;      // number of Voronoi biome regions
+const MAX_ENEMIES = 400;           // total living enemies on the map
+const INITIAL_ENEMIES = 260;       // pre-populated across the world
 
 type Dir = "down" | "left" | "right" | "up";
-type Enemy = { def: EnemyDef; x: number; y: number; hp: number; img: HTMLImageElement };
+type Enemy = { def: EnemyDef; x: number; y: number; hp: number; maxHp: number; level: number; atk: number; df: number; img: HTMLImageElement };
 type Drop = { x: number; y: number; kind: "coin" | "item"; img: HTMLImageElement; value: number; name: string };
 type FloatText = { x: number; y: number; text: string; color: string; life: number };
 type Quest = { biome: string; goal: number; progress: number; rewardGold: number; rewardXp: number; rewardItem?: string; done: boolean };
-type InvItem = { name: string; sprite: string; count: number };
+type EquipKind = "weapon" | "armor" | "shield" | "helmet" | "none";
+type InvItem = { name: string; sprite: string; count: number; kind: EquipKind; atk: number; df: number };
+type Equipped = { weapon?: InvItem; armor?: InvItem; shield?: InvItem; helmet?: InvItem };
+
+function classify(name: string): { kind: EquipKind; atk: number; df: number } {
+  const n = name.toLowerCase();
+  if (n.includes("sword") || n.includes("axe") || n.includes("hammer") || n.includes("bow") || n.includes("staff"))
+    return { kind: "weapon", atk: n.includes("magic") ? 12 : n.includes("steel") ? 9 : n.includes("iron") ? 6 : n.includes("wooden") ? 3 : 7, df: 0 };
+  if (n.includes("shield")) return { kind: "shield", atk: 0, df: n.includes("magic") ? 6 : n.includes("iron") ? 4 : 2 };
+  if (n.includes("helmet") || n.includes("cap")) return { kind: "helmet", atk: 0, df: n.includes("iron") ? 3 : 1 };
+  if (n.includes("chest") || n.includes("robe")) return { kind: "armor", atk: 0, df: n.includes("magic") ? 5 : n.includes("iron") ? 6 : 3 };
+  return { kind: "none", atk: 0, df: 0 };
+}
 
 // deterministic hashing
 function hash2(x: number, y: number, s = 0) {
@@ -57,6 +71,7 @@ export default function Game() {
   const [hud, setHud] = useState({ hp: 100, maxHp: 100, gold: 0, xp: 0, xpNext: 50, level: 1 });
   const [modal, setModal] = useState<null | "inv" | "map" | "quests">(null);
   const [invView, setInvView] = useState<InvItem[]>([]);
+  const [equipView, setEquipView] = useState<Equipped>({});
   const [questView, setQuestView] = useState<Quest[]>([]);
   const [currentBiome, setCurrentBiome] = useState("grassland");
 
@@ -77,6 +92,7 @@ export default function Game() {
     attackReq: boolean;
     hp: number; maxHp: number; gold: number; xp: number; level: number;
     inv: Map<string, InvItem>;
+    equipped: Equipped;
     quests: Record<string, Quest>;
     lastSpawn: number;
   }>({
@@ -89,7 +105,7 @@ export default function Game() {
     enemies: [], drops: [], floats: [],
     keys: new Set(), touchDir: null, attackReq: false,
     hp: 100, maxHp: 100, gold: 0, xp: 0, level: 1,
-    inv: new Map(), quests: {}, lastSpawn: 0,
+    inv: new Map(), equipped: {}, quests: {}, lastSpawn: 0,
   });
 
   // Load assets
@@ -140,6 +156,7 @@ export default function Game() {
           }
         }
       }
+      populateWorldEnemies();
       setStatus("playing");
     })().catch(err => console.error(err));
   }, []);
@@ -175,8 +192,53 @@ export default function Game() {
   }
   function isWalkable(tx: number, ty: number): boolean {
     if (tx < 0 || ty < 0 || tx >= WORLD || ty >= WORLD) return false;
+    if (!inWorldShape(tx, ty)) return false;
     if (isWater(tx, ty)) return false;
     return tileIndexAt(tx, ty) <= 2;
+  }
+
+  // Non-rectangular continent: distance-from-center attenuated by noise
+  function inWorldShape(tx: number, ty: number): boolean {
+    const cx = WORLD / 2, cy = WORLD / 2;
+    const dx = (tx - cx) / (WORLD / 2);
+    const dy = (ty - cy) / (WORLD / 2);
+    const r = Math.sqrt(dx * dx + dy * dy);
+    const wobble = noise2(tx, ty, 22, 17) * 0.4;
+    return r < 0.72 + wobble;
+  }
+
+  function makeEnemy(def: EnemyDef, tx: number, ty: number, level: number, img: HTMLImageElement): Enemy {
+    const mul = 1 + (level - 1) * 0.35;
+    const maxHp = Math.round(def.hp * mul);
+    return {
+      def, x: tx, y: ty, level,
+      maxHp, hp: maxHp,
+      atk: Math.round(def.atk * mul),
+      df: Math.round(def.def * (1 + (level - 1) * 0.2)),
+      img,
+    };
+  }
+
+  function populateWorldEnemies() {
+    const s = stateRef.current;
+    if (!s.manifest) return;
+    let placed = 0, tries = 0;
+    while (placed < INITIAL_ENEMIES && tries < INITIAL_ENEMIES * 20) {
+      tries++;
+      const tx = Math.floor(Math.random() * WORLD);
+      const ty = Math.floor(Math.random() * WORLD);
+      if (!isWalkable(tx, ty)) continue;
+      if (Math.abs(tx - s.px) + Math.abs(ty - s.py) < 4) continue;
+      const cx = WORLD / 2, cy = WORLD / 2;
+      const dist = Math.sqrt((tx - cx) ** 2 + (ty - cy) ** 2) / (WORLD / 2);
+      const tier = Math.min(5, 1 + Math.floor(dist * 5 + Math.random() * 1.5));
+      const pool = s.manifest.enemies.filter(e => e.tier === tier);
+      const def = pool[Math.floor(Math.random() * pool.length)] || s.manifest.enemies[0];
+      const level = Math.max(1, Math.round(1 + dist * 15 + Math.random() * 3));
+      const img = s.images.get(def.sprite)!;
+      s.enemies.push(makeEnemy(def, tx, ty, level, img));
+      placed++;
+    }
   }
 
   // Precompute a mini world map for the map modal
@@ -199,7 +261,8 @@ export default function Game() {
     // sample coarser: every tile
     for (let ty = 0; ty < WORLD; ty++) {
       for (let tx = 0; tx < WORLD; tx++) {
-        if (isWater(tx, ty)) ctx.fillStyle = "#1e40af";
+        if (!inWorldShape(tx, ty)) ctx.fillStyle = "#050510";
+        else if (isWater(tx, ty)) ctx.fillStyle = "#1e40af";
         else ctx.fillStyle = colorFor(biomeAt(tx, ty));
         ctx.fillRect(tx * scale, ty * scale, scale, scale);
       }
@@ -225,8 +288,23 @@ export default function Game() {
     return () => { window.removeEventListener("keydown", kd); window.removeEventListener("keyup", ku); };
   }, []);
 
-  const refreshInvView = () => setInvView(Array.from(stateRef.current.inv.values()));
+  const refreshInvView = () => {
+    setInvView(Array.from(stateRef.current.inv.values()));
+    setEquipView({ ...stateRef.current.equipped });
+  };
   const refreshQuestView = () => setQuestView(Object.values(stateRef.current.quests));
+
+  const equip = (name: string) => {
+    const s = stateRef.current;
+    const it = s.inv.get(name);
+    if (!it || it.kind === "none") return;
+    s.equipped[it.kind] = it;
+    refreshInvView();
+  };
+  const unequip = (kind: Exclude<EquipKind, "none">) => {
+    delete stateRef.current.equipped[kind];
+    refreshInvView();
+  };
 
   // Main loop
   useEffect(() => {
@@ -269,23 +347,29 @@ export default function Game() {
     const addInv = (name: string, sprite: string) => {
       const cur = s.inv.get(name);
       if (cur) cur.count += 1;
-      else s.inv.set(name, { name, sprite, count: 1 });
+      else {
+        const c = classify(name);
+        s.inv.set(name, { name, sprite, count: 1, kind: c.kind, atk: c.atk, df: c.df });
+      }
     };
 
     const spawnEnemy = () => {
       if (!s.manifest) return;
-      if (s.enemies.length >= 10) return;
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 6 + Math.random() * 4;
-      const tx = Math.round(s.px + Math.cos(angle) * dist);
-      const ty = Math.round(s.py + Math.sin(angle) * dist);
-      if (!isWalkable(tx, ty)) return;
-      // Tier scales with level
-      const tier = Math.min(5, 1 + Math.floor(s.level / 3));
-      const pool = s.manifest.enemies.filter(e => e.tier <= tier);
-      const def = pool[Math.floor(Math.random() * pool.length)];
-      const img = s.images.get(def.sprite)!;
-      s.enemies.push({ def, x: tx, y: ty, hp: def.hp, img });
+      if (s.enemies.length >= MAX_ENEMIES) return;
+      for (let tries = 0; tries < 12; tries++) {
+        const tx = Math.floor(Math.random() * WORLD);
+        const ty = Math.floor(Math.random() * WORLD);
+        if (!isWalkable(tx, ty)) continue;
+        if (Math.abs(tx - s.px) + Math.abs(ty - s.py) < 5) continue;
+        const cx = WORLD / 2, cy = WORLD / 2;
+        const dist = Math.sqrt((tx - cx) ** 2 + (ty - cy) ** 2) / (WORLD / 2);
+        const tier = Math.min(5, 1 + Math.floor(dist * 5 + Math.random() * 1.5));
+        const pool = s.manifest.enemies.filter(e => e.tier === tier);
+        const def = pool[Math.floor(Math.random() * pool.length)] || s.manifest.enemies[0];
+        const level = Math.max(1, Math.round(1 + dist * 15 + Math.random() * 3));
+        s.enemies.push(makeEnemy(def, tx, ty, level, s.images.get(def.sprite)!));
+        return;
+      }
     };
 
     const doAttack = () => {
@@ -294,12 +378,14 @@ export default function Game() {
       const tx = s.px + dx, ty = s.py + dy;
       const target = s.enemies.find(e => e.x === tx && e.y === ty);
       if (!target) return;
-      const dmg = Math.max(1, 6 + s.level * 2 - target.def.def);
+      const weaponBonus = s.equipped.weapon?.atk ?? 0;
+      const dmg = Math.max(1, 6 + s.level * 2 + weaponBonus - target.df);
       target.hp -= dmg;
       s.floats.push({ x: target.x, y: target.y, text: `-${dmg}`, color: "#ffdd44", life: 40 });
       if (target.hp <= 0) {
-        s.gold += Math.floor(target.def.gold[0] + Math.random() * (target.def.gold[1] - target.def.gold[0] + 1));
-        s.xp += target.def.xp;
+        const lvlMul = 1 + (target.level - 1) * 0.3;
+        s.gold += Math.floor((target.def.gold[0] + Math.random() * (target.def.gold[1] - target.def.gold[0] + 1)) * lvlMul);
+        s.xp += Math.round(target.def.xp * lvlMul);
         if (Math.random() < 0.75) {
           const kinds: (keyof Manifest["coins"])[] = ["copper","silver","gold","gem"];
           const k = kinds[Math.min(3, Math.floor(target.def.tier / 2))];
@@ -322,9 +408,11 @@ export default function Game() {
 
     const enemyTurn = () => {
       for (const e of s.enemies) {
+        if (Math.abs(e.x - s.px) + Math.abs(e.y - s.py) > 14) continue;
         const dx = Math.sign(s.px - e.x), dy = Math.sign(s.py - e.y);
         if (Math.abs(s.px - e.x) + Math.abs(s.py - e.y) === 1) {
-          const dmg = Math.max(1, e.def.atk - s.level);
+          const armorDf = (s.equipped.armor?.df ?? 0) + (s.equipped.shield?.df ?? 0) + (s.equipped.helmet?.df ?? 0);
+          const dmg = Math.max(1, e.atk - s.level - armorDf);
           s.hp -= dmg;
           s.floats.push({ x: s.px, y: s.py, text: `-${dmg}`, color: "#ff5555", life: 40 });
         } else {
@@ -381,7 +469,7 @@ export default function Game() {
       if (acted) enemyTurn();
 
       s.lastSpawn += dt;
-      if (s.lastSpawn > 1.2) { s.lastSpawn = 0; spawnEnemy(); }
+      if (s.lastSpawn > 0.35) { s.lastSpawn = 0; spawnEnemy(); }
       s.floats.forEach(f => { f.life -= 1; f.y -= 0.02; });
       s.floats = s.floats.filter(f => f.life > 0);
       if (s.hp <= 0) setStatus("dead");
@@ -393,6 +481,9 @@ export default function Game() {
     const drawTile = (tx: number, ty: number, sx: number, sy: number) => {
       if (tx < 0 || ty < 0 || tx >= WORLD || ty >= WORLD) {
         ctx.fillStyle = "#000"; ctx.fillRect(sx, sy, TILE, TILE); return;
+      }
+      if (!inWorldShape(tx, ty)) {
+        ctx.fillStyle = "#050510"; ctx.fillRect(sx, sy, TILE, TILE); return;
       }
       if (isWater(tx, ty)) {
         const wIdx = Math.floor(hash2(tx, ty, 91) * s.waterImgs.length);
@@ -435,13 +526,20 @@ export default function Game() {
         ctx.drawImage(d.img, sx + 8, sy + 8, TILE - 16, TILE - 16);
       }
       for (const e of s.enemies) {
+        if (Math.abs(e.x - s.px) > VIEW_TILES_X + 1 || Math.abs(e.y - s.py) > VIEW_TILES_Y + 1) continue;
         const sx = cx + (e.x - s.px) * TILE - TILE / 2;
         const sy = cy + (e.y - s.py) * TILE - TILE / 2;
         ctx.drawImage(e.img, sx, sy, TILE, TILE);
-        const pct = Math.max(0, e.hp / e.def.hp);
+        const pct = Math.max(0, e.hp / e.maxHp);
         ctx.fillStyle = "#000"; ctx.fillRect(sx + 6, sy - 6, TILE - 12, 4);
         ctx.fillStyle = pct > 0.5 ? "#4ade80" : pct > 0.25 ? "#facc15" : "#ef4444";
         ctx.fillRect(sx + 6, sy - 6, (TILE - 12) * pct, 4);
+        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        ctx.fillRect(sx + 2, sy - 20, 36, 12);
+        ctx.font = "bold 10px system-ui";
+        ctx.textAlign = "left";
+        ctx.fillStyle = "#fde68a";
+        ctx.fillText(`Lv${e.level}`, sx + 4, sy - 11);
       }
       const pImg = s.playerImgs[s.dir][Math.floor(s.frame)];
       if (pImg) ctx.drawImage(pImg, cx - TILE / 2, cy - TILE / 2, TILE, TILE);
@@ -484,8 +582,10 @@ export default function Game() {
     }
     s.hp = 100; s.maxHp = 100; s.gold = 0; s.xp = 0; s.level = 1;
     s.inv.clear();
+    s.equipped = {};
     for (const q of Object.values(s.quests)) { q.progress = 0; q.done = false; }
     s.enemies = []; s.drops = []; s.floats = [];
+    populateWorldEnemies();
     setStatus("playing");
   };
 
@@ -602,21 +702,54 @@ export default function Game() {
 
           {modal === "inv" && (
             <Modal title={`Inventory — ${hud.gold} gold`} onClose={() => setModal(null)}>
-              <div className="grid grid-cols-6 gap-2 max-h-[70vh] overflow-auto">
+              <div className="mb-3 grid grid-cols-4 gap-2">
+                {(["weapon","armor","shield","helmet"] as const).map(slot => {
+                  const it = equipView[slot];
+                  return (
+                    <button
+                      key={slot}
+                      onClick={() => it && unequip(slot)}
+                      className="relative aspect-square rounded bg-yellow-500/10 border border-yellow-400/40 flex items-center justify-center"
+                      title={it ? `Unequip ${it.name}` : `${slot} slot`}
+                    >
+                      {it ? (
+                        <img src={it.sprite} alt={it.name} className="w-10 h-10" style={{ imageRendering: "pixelated" }} />
+                      ) : (
+                        <span className="text-[10px] uppercase text-white/50">{slot}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mb-2 text-[11px] text-white/70">
+                ATK bonus +{equipView.weapon?.atk ?? 0} · DEF bonus +{(equipView.armor?.df ?? 0) + (equipView.shield?.df ?? 0) + (equipView.helmet?.df ?? 0)}
+              </div>
+              <div className="grid grid-cols-6 gap-2 max-h-[50vh] overflow-auto">
                 {invView.length === 0 && (
                   <div className="col-span-6 text-center text-white/60 text-sm py-8">
                     Empty. Defeat enemies to collect loot.
                   </div>
                 )}
                 {invView.map(it => (
-                  <div key={it.name} className="relative aspect-square rounded bg-white/10 border border-white/10 flex items-center justify-center">
+                  <button
+                    key={it.name}
+                    onClick={() => equip(it.name)}
+                    disabled={it.kind === "none"}
+                    title={it.kind !== "none" ? `Equip ${it.name} (${it.kind})` : it.name}
+                    className={`relative aspect-square rounded border flex items-center justify-center ${it.kind !== "none" ? "bg-emerald-500/10 border-emerald-400/40 hover:bg-emerald-500/20" : "bg-white/10 border-white/10"}`}
+                  >
                     <img src={it.sprite} alt={it.name} className="w-10 h-10" style={{ imageRendering: "pixelated" }} />
                     {it.count > 1 && (
                       <span className="absolute bottom-0 right-0 text-[10px] font-bold bg-black/80 px-1 rounded">
                         ×{it.count}
                       </span>
                     )}
-                  </div>
+                    {it.kind !== "none" && (
+                      <span className="absolute top-0 left-0 text-[9px] font-bold bg-emerald-600/80 px-1 rounded-br">
+                        {it.kind === "weapon" ? `+${it.atk}A` : `+${it.df}D`}
+                      </span>
+                    )}
+                  </button>
                 ))}
               </div>
             </Modal>
